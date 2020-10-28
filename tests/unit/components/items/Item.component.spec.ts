@@ -56,7 +56,7 @@ describe('Item.component.vue', () => {
         const model: ItemInterface = {
             id: 3,
             name: 'Unit test item 3',
-            selected: false
+            selected: true
         }
 
         const wrapper = shallowMount(ItemComponent, {

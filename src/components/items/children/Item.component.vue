@@ -1,7 +1,7 @@
 
 <template>
     <li :class="css" @click="onClick">
-        <div class="selected-indicator">*</div>
+        <div class="selected-indicator">.</div>
         <div class="name">{{ model.name }}</div>
     </li>
 </template>
@@ -52,14 +52,14 @@
             text-align: left;
         }
         .selected-indicator {
-            padding: 5px;
+            padding: 0px;
             font-size: 3em;
-            line-height: 0.5em;
-            color: lightgray;
+            line-height: 0.0em;
+            color: #492060;
         }
         &.selected {
             .selected-indicator {
-                color: skyblue;
+                color: #42b983;
             }
         }
         &.hover {
