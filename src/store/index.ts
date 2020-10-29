@@ -2,6 +2,7 @@
 import { createStore } from 'vuex'
 import { ItemInterface } from '@/models/items/Item.interface' 
 import { ItemsStateInterface } from '@/models/store/ItemsState.interface' 
+import apiClient from '@/api-client'
 
 // our initial state
 const state: ItemsStateInterface = {
@@ -32,32 +33,18 @@ export default createStore({
         }
     },
     actions: {
+
         loadItems({ commit, state }) {
             commit('loadingItems')
-
-            // mock some data
-            const mockItems: ItemInterface[] = [
-                {
-                    id: 1,
-                    name: 'Item-1',
-                    selected: false
-                },
-                {
-                    id: 2,
-                    name: 'Item-2',
-                    selected: false
-                },
-                {
-                    id: 3,
-                    name: 'Item-3',
-                    selected: false
-                }
-            ]
 
             // lets pretend we call some API endpoint that take 1 second
             // to return the data
             setTimeout(() => {
-                commit('loadedItems', mockItems)
+                apiClient
+                    .items
+                    .fetchItems().then((data: ItemInterface[]) => {
+                        commit('loadedItems', data)
+                    })
             }, 1000)
 
         },
